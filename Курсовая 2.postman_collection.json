@@ -1,0 +1,954 @@
+{
+	"info": {
+		"_postman_id": "05a70e96-3be8-4994-bc46-96073635cfe4",
+		"name": "Курсовая 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28142534"
+	},
+	"item": [
+		{
+			"name": "Получения  расписания",
+			"item": [
+				{
+					"name": "Получение расписания",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"2023-08-07T00:00:00+03:00\",\r\n    \"till\": \"2023-08-14T00:00:00+03:00\",\r\n    \"onlyTypes\": [\r\n        \"slot\",\r\n        \"event\"\r\n        ],\r\n        \"statuses\": [\r\n            \"without_status\"\r\n        ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/events",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"events"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Создание Личного события",
+			"item": [
+				{
+					"name": "1 Создание ЛС в настоящем с корректными данными",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"id_1\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"\r",
+									"pm.collectionVariables.set(key,value)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"ммммммммммммммммммммммммммммммммммммммааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааавввввввввввввввввввввввввввввввыыыыыыыыыыыыыыыыыыыыыыыыывввваааааааааааааккккккккккккккккккккккккккккккккуууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууооооооооооо\",\r\n    \"title\": \"irinaL12\",\r\n    \"startAt\": \"2023-08-15T13:00:00+03:00\",\r\n    \"endAt\": \"2023-08-15T13:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/createPersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2 Создание ЛС в прошлом с корректными данными",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"id_2\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"\r",
+									"pm.collectionVariables.set(key, value)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"тест-кейс\",\r\n    \"title\": \"IrinaL\",\r\n    \"startAt\": \"2023-08-09T12:00:00+03:00\",\r\n    \"endAt\": \"2023-08-09T12:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/createPersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3 Создание ЛС c корректными данными в будущем",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"id_3\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"\r",
+									"pm.collectionVariables.set(key, value)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"yyyyyyyyyyyybbbbbbbbbxxxxxxxxxxxxx1\",\r\n    \"title\": \"ИринаЛ\",\r\n    \"startAt\": \"2023-08-17T13:00:00+03:00\",\r\n    \"endAt\": \"2023-08-17T13:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/createPersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4 Создание ЛС  к уроку на одинаковый период времени",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"id_4\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"\r",
+									"pm.collectionVariables.set(key, value)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"((yyyyyyyyyyyybbbbbbbbbxxxx;%?)\",\r\n    \"title\": \"ИринаИринаИринаИринаИринаИринаИринаИрина\",\r\n    \"startAt\": \"2023-08-12T17:30:00+03:00\",\r\n    \"endAt\": \"2023-08-12T18:20:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/createPersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5 Создание ЛС  с пустыми значениями",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"\",\r\n    \"description\": \"\",\r\n    \"title\": \"\",\r\n    \"startAt\": \"\",\r\n    \"endAt\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/createPersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6 Создание ЛС  к ЛС на одинаковый период времени",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"id_6\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"\r",
+									"pm.collectionVariables.set(key, value)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"789456\",\r\n    \"title\": \"bbbbbbbbbbbbbbbb\",\r\n    \"startAt\": \"2023-08-11T18:30:00+03:00\",\r\n    \"endAt\": \"2023-08-11T19:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/createPersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7 Создание ЛС  c некорректной датой",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"[!CAUTION] Negative potential consequences of an action.\",\r\n    \"title\": \"Ирина Л\",\r\n    \"startAt\": \"2023-02-30T18:30:00+03:00\",\r\n    \"endAt\": \"2023-02-30T19:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/createPersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8 Создание ЛС  c некорректным полем \"Название\"",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"тест123\",\r\n    \"title\": \"ИринаИринаИринаИринаИринаИринаИринаИринаИ\",\r\n    \"startAt\": \"2023-08-11T18:30:00+03:00\",\r\n    \"endAt\": \"2023-08-11T19:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/createPersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9 Создание ЛС  cо всеми некорректными полями",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"ььььььььььььььььмммммммммммммм22333333333335555555555555555555550000000000000000000№№№№№№№№№№№№№№№№№№№№№№№№№ммммммммммммммммммммммммммммьььььььььььььььььььььььььььььдддддддддддддддддддддддддддддддддддддввввввввввввввввввввввввввввввввв556664444444444444444444444444444444444ааааааааааааааааааааааааааааааааа555555555555555555555555555ппппппппппппппппппппппппппппппппппппппппппппппппппппппп555555555555555555555555кккккккккккккккккккккккккккккккккккк555555555555555552222222222222222222222222222222222\",\r\n    \"title\": \"ИринаИринаИринаИринаИринаИринаИринаИринаИ\",\r\n    \"startAt\": \"2023-08-32T18:30:00+03:00\",\r\n    \"endAt\": \"2023-08-32T19:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/createPersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10 Создание ЛС  c некорректным полем \"Описание\"",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"ььььььььььььььььмммммммммммммм22333333333335555555555555555555550000000000000000000№№№№№№№№№№№№№№№№№№№№№№№№№ммммммммммммммммммммммммммммьььььььььььььььььььььььььььььдддддддддддддддддддддддддддддддддддддввввввввввввввввввввввввввввввввв556664444444444444444444444444444444444ааааааааааааааааааааааааааааааааа555555555555555555555555555ппппппппппппппппппппппппппппппппппппппппппппппппппппппп555555555555555555555555кккккккккккккккккккккккккккккккккккк55555555555555555222222222222222222222222222222222212\",\r\n    \"title\": \"ИринаЛ\",\r\n    \"startAt\": \"2023-08-12T18:30:00+03:00\",\r\n    \"endAt\": \"2023-08-12T19:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/createPersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Редактирование Личного события",
+			"item": [
+				{
+					"name": "Редактирование ЛС всех параметров сразу с корректными значениями",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"тест-кейст\",\r\n    \"title\": \"irinaL12345\",\r\n    \"startAt\": \"2023-08-16T13:00:00+03:00\",\r\n    \"endAt\": \"2023-08-16T13:30:00+03:00\",\r\n    \"id\": {{id_1}},\r\n    \"oldStartAt\": \"2023-08-15T13:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/updatePersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"updatePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование только поле \"Название\"",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"тест-кейс\",\r\n    \"title\": \"IrinaL12345\",\r\n    \"startAt\": \"2023-08-09T12:00:00+03:00\",\r\n    \"endAt\": \"2023-08-09T12:30:00+03:00\",\r\n    \"id\":{{id_2}},\r\n    \"oldStartAt\": \"2023-08-09T12:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/updatePersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"updatePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование только поля \" дата и время\" из будущего в прошлое",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"yyyyyyyyyyyybbbbbbbbbxxxxxxxxxxxxx1\",\r\n    \"title\": \"ИринаЛ\",\r\n    \"startAt\": \"2023-08-14T13:00:00+03:00\",\r\n    \"endAt\": \"2023-08-14T13:30:00+03:00\",\r\n    \"id\": {{id_3}},\r\n    \"oldStartAt\": \"2023-08-17T13:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/updatePersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"updatePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование только поля \" описание\"",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"тест\",\r\n    \"title\": \"ИринаИринаИринаИринаИринаИринаИринаИрина\",\r\n    \"startAt\": \"2023-08-12T17:30:00+03:00\",\r\n    \"endAt\": \"2023-08-12T18:20:00+03:00\",\r\n    \"id\": {{id_4}},\r\n    \"oldStartAt\": \"2023-08-12T17:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/updatePersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"updatePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование только цвет ЛС",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#43B658\",\r\n    \"description\": \"789456\",\r\n    \"title\": \"bbbbbbbbbbbbbbbb\",\r\n    \"startAt\": \"2023-08-11T18:30:00+03:00\",\r\n    \"endAt\": \"2023-08-11T19:00:00+03:00\",\r\n    \"id\": {{id_6}},\r\n    \"oldStartAt\": \"2023-08-11T18:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/updatePersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"updatePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование ЛС без изменения данных",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"ммммммммммммммммммммммммммммммммммммммааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааавввввввввввввввввввввввввввввввыыыыыыыыыыыыыыыыыыыыыыыыывввваааааааааааааккккккккккккккккккккккккккккккккуууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууууооооооооооо\",\r\n    \"title\": \"irinaL12\",\r\n    \"startAt\": \"2023-08-15T13:00:00+03:00\",\r\n    \"endAt\": \"2023-08-15T13:30:00+03:00\",\r\n    \"id\": {{id_1}},\r\n    \"oldStartAt\": \"2023-08-15T13:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/updatePersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"updatePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование поля \"дата и время\" из прошлого в будущее",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"тест-кейс\",\r\n    \"title\": \"IrinaL\",\r\n    \"startAt\": \"2023-08-18T12:00:00+03:00\",\r\n    \"endAt\": \"2023-08-18T12:30:00+03:00\",\r\n    \"id\":{{id_2}},\r\n    \"oldStartAt\": \"2023-08-09T12:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/updatePersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"updatePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование поля \"дата и время\" из настоящего в прошлое",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"((yyyyyyyyyyyybbbbbbbbbxxxx;%?)\",\r\n    \"title\": \"ИринаИринаИринаИринаИринаИринаИринаИрина\",\r\n    \"startAt\": \"2023-08-07T17:30:00+03:00\",\r\n    \"endAt\": \"2023-08-07T18:20:00+03:00\",\r\n    \"id\": {{id_4}},\r\n    \"oldStartAt\": \"2023-08-12T17:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/updatePersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"updatePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование поля \"дата и время\" из настоящего в будущее",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"789456\",\r\n    \"title\": \"bbbbbbbbbbbbbbbb\",\r\n    \"startAt\": \"2023-08-20T18:30:00+03:00\",\r\n    \"endAt\": \"2023-08-20T19:00:00+03:00\",\r\n    \"id\": {{id_6}},\r\n    \"oldStartAt\": \"2023-08-11T18:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/updatePersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"updatePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Удаление Личного события",
+			"item": [
+				{
+					"name": "Удаление ЛС в настоящем",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{id_1}},\r\n    \"startAt\": \"2023-08-15T13:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/removePersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"removePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление ЛС из прошлого",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{id_2}},\r\n    \"startAt\": \"2023-08-09T12:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/removePersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"removePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление ЛС из будущего",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{id_3}},\r\n    \"startAt\": \"2023-08-17T13:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/schedule/removePersonal",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"schedule",
+								"removePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "URL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "id_1",
+			"value": null
+		},
+		{
+			"key": "id_4",
+			"value": ""
+		},
+		{
+			"key": "id_2",
+			"value": ""
+		},
+		{
+			"key": "id_3",
+			"value": ""
+		},
+		{
+			"key": "id_6",
+			"value": ""
+		}
+	]
+}
